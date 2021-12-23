@@ -20,7 +20,7 @@
             computerSelection = computerPlay().toLowerCase();
             playerSelection = playerSelection.toLowerCase();
             if (computerSelection == playerSelection) {
-                return "Tie game";
+                return `You both chose ${playerSelection}.`;
             } else if (computerSelection == "rock" && playerSelection == "scissors") {
                 return "You lose! Rock beats scissors.";
             } else if (computerSelection == "rock" && playerSelection == "paper") {
@@ -37,23 +37,22 @@
         }
 
         function game() {
-            let playerSelection = "paper";
-            let computerSelection = computerPlay();
             let i = 1;
             while (i<6) {
+                let playerSelection = prompt("Rock, paper, or scissors?");
+                let computerSelection = computerPlay();
                 let result = playRound(playerSelection, computerSelection);
                 if (result.search("You win") > -1) {
                     playerScore++;
+                    i++;
                 } else if (result.search("You lose") > -1) {
                     computerScore++;
+                    i++;
                 }
                 console.log(result);
-                i++;
             }
             if (computerScore > playerScore) {
                 return "You lost the game!";
-            } else if (computerScore === playerScore) {
-                return "You tied.";
             } else {
                 return "You won the game!";
             }
